@@ -22,3 +22,8 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('messenger/{user}', \App\Http\Controllers\GetUserMessages::class)->name('get-user-messages');
+    Route::post('messenger', \App\Http\Controllers\SendMessage::class)->name('send-message');
+});
