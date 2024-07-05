@@ -1,10 +1,9 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import ChatPanel from "@/Components/messenger/chat/ChatPanel.vue";
+import Panel from "@/Components/messenger/chat/Panel.vue";
 import {computed, watchEffect} from "vue";
 import {router, usePage} from "@inertiajs/vue3";
-
-const page = usePage()
+import UsersList from "@/Components/messenger/chat/UsersList.vue";
 
 window.Echo
     .private(`message`)
@@ -15,7 +14,8 @@ window.Echo
         })
     });
 
-const messages = computed(() => page.props.messages)
+
+
 </script>
 
 <template>
@@ -26,13 +26,11 @@ const messages = computed(() => page.props.messages)
             </h2>
         </template>
 
-        <div class="py-12 h-[70vh]">
+        <div class="py-12 h-[70vh] ">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                    <div class="grid grid-cols-[1fr_300px] gap-4">
-                        <chat-panel :messages="messages"/>
-                        <div class="bg-gray-300 w-full h-full"></div>
-                    </div>
+                <div class="flex items-start gap-4 bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+                    <users-list/>
+                    <panel :messages="messages"/>
                 </div>
             </div>
         </div>
