@@ -9,7 +9,9 @@ const message = useForm({
 })
 
 const send = () => {
-    message.post(route('send-message', {user: page.props.receiver}))
+    message.post(route('send-message', {user: page.props.receiver}, {
+        only: ['contacts', 'messages']
+    }))
     message.text = null
 }
 </script>

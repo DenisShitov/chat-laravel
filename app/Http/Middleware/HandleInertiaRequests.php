@@ -40,7 +40,7 @@ class HandleInertiaRequests extends Middleware
             'auth.user' => fn () => $request->user()
                 ? $request->user()->only('id', 'name', 'email')
                 : null,
-            'contacts' => auth()->check() ? User::whereNot('id', auth()->user()->id)->get() : null
+
         ]);
     }
 }
